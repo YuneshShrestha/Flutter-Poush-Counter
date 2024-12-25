@@ -34,7 +34,7 @@ void main() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterScreen(),
+      home: HomeWidget(),
     ),
   );
 }
@@ -83,7 +83,18 @@ class HomeWidget extends StatelessWidget {
                   fontSize: 30.0,
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Next")),
+
+              ElevatedButton(
+                onPressed: () {
+                  // Navigation
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) {
+                      return CounterScreen();
+                    },
+                  ));
+                },
+                child: Text("Next"),
+              ),
             ],
           ),
         ),
@@ -132,9 +143,11 @@ class _CounterScreenState extends State<CounterScreen> {
                 // Button
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      storeValue--;
-                    });
+                    setState(
+                      () {
+                        storeValue--;
+                      },
+                    );
                   },
                   child: const Text("-"),
                 ),
